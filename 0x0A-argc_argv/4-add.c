@@ -1,38 +1,39 @@
-#include <stdlib.h>
 #include <stdio.h>
-#include <ctype.h>
-#include "main.h"
+#include <stdlib.h>
 
 /**
-* main - add positive numbers
-* @argc: arguement count
-* @argv: arguement vectors
-*
-* Return: Always 0 (succes)
-*/
-
-int main(int argc, char *argv[])
+ * main - adds positive numbers.
+ * @argc: argument count
+ * @argv: arguments
+ *
+ * Return: 0
+ */
+int main(int argc, char **argv)
 {
-	int i, sum = 0;
+	int i, n, sum = 0;
+	char *flag;
 
-	if (argc < 1)
+	if (argc < 2)
 	{
+		printf("0\n");
 		return (0);
 	}
-	else
+
+	for (i = 1; argv[i]; i++)
 	{
-		for (i = 1; i < argc; i++)
+		n = strtol(argv[i], &flag, 10);
+		if (*flag)
 		{
-			if (isalpha(*argv[i]) != 0)
-			{
-				printf("%s\n", "Error");
-				return (1);
-			}
-			sum += atoi(argv[i]);
+			printf("Error\n");
+			return (1);
 		}
-
-		printf("%d\n", sum);
+		else
+		{
+			sum += n;
+		}
 	}
+	printf("%d\n", sum);
 
-	exit(EXIT_SUCCESS);
+	return (0);
 }
+
